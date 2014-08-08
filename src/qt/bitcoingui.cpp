@@ -301,7 +301,7 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     signMessageAction->setStatusTip(tr("Sign messages with your Dogecoin addresses to prove you own them"));
     verifyMessageAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Verify message..."), this);
     verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Dogecoin addresses"));
-    paperWalletAction = new QAction(QIcon(":/icons/transaction_0"), tr("&Print paper wallets"), this);
+    paperWalletAction = new QAction(QIcon(":/icons/print"), tr("&Print paper wallets"), this);
     paperWalletAction->setStatusTip(tr("Print paper wallets"));
 
     openRPCConsoleAction = new QAction(QIcon(":/icons/debugwindow"), tr("&Debug window"), this);
@@ -335,7 +335,7 @@ void BitcoinGUI::createActions(bool fIsTestnet)
         connect(usedSendingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedSendingAddresses()));
         connect(usedReceivingAddressesAction, SIGNAL(triggered()), walletFrame, SLOT(usedReceivingAddresses()));
         connect(openAction, SIGNAL(triggered()), this, SLOT(openClicked()));
-        connect(paperWalletAction, SIGNAL(triggered()), this, SLOT(paperWalletClicked()));
+        connect(paperWalletAction, SIGNAL(triggered()), walletFrame, SLOT(printPaperWallets()));
     }
 #endif
 }
@@ -468,6 +468,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     usedSendingAddressesAction->setEnabled(enabled);
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
+    paperWalletAction->setEnabled(enabled);
 }
 
 void BitcoinGUI::createTrayIcon(bool fIsTestnet)
@@ -556,16 +557,6 @@ void BitcoinGUI::aboutClicked()
         return;
 
     AboutDialog dlg(this);
-    dlg.setModel(clientModel);
-    dlg.exec();
-}
-
-void BitcoinGUI::paperWalletClicked()
-{
-    if(!clientModel)
-        return;
-
-    PaperWalletDialog dlg(this);
     dlg.setModel(clientModel);
     dlg.exec();
 }

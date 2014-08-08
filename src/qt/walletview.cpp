@@ -17,6 +17,7 @@
 #include "transactiontablemodel.h"
 #include "transactionview.h"
 #include "walletmodel.h"
+#include "utilitydialog.h"
 
 #include "ui_interface.h"
 
@@ -276,4 +277,14 @@ void WalletView::usedReceivingAddresses()
     dlg->setAttribute(Qt::WA_DeleteOnClose);
     dlg->setModel(walletModel->getAddressTableModel());
     dlg->show();
+}
+
+void WalletView::printPaperWallets()
+{
+    if(!walletModel)
+        return;
+
+    PaperWalletDialog dlg(this);
+    dlg.setModel(walletModel);
+    dlg.exec();
 }
