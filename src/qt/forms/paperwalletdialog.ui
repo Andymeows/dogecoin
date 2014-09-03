@@ -13,7 +13,11 @@
   <property name="windowTitle">
    <string>Print Your Paper Wallets</string>
   </property>
+<<<<<<< HEAD
   <widget class="QRImageWidget" name="privateKeyQRCode">
+=======
+  <widget class="QLabel" name="privateKeyQRCode">
+>>>>>>> 7ce6c44fbf7c4f487300a2a416e66a677d517cb8
    <property name="geometry">
     <rect>
      <x>524</x>
@@ -29,7 +33,11 @@
     <bool>true</bool>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QRImageWidget" name="addressQRCode">
+=======
+  <widget class="QLabel" name="addressQRCode">
+>>>>>>> 7ce6c44fbf7c4f487300a2a416e66a677d517cb8
    <property name="geometry">
     <rect>
      <x>47</x>
@@ -62,7 +70,11 @@
      <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QRImageWidget" name="paperTemplate">
+=======
+  <widget class="QLabel" name="paperTemplate">
+>>>>>>> 7ce6c44fbf7c4f487300a2a416e66a677d517cb8
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -310,11 +322,14 @@ p, li { white-space: pre-wrap; }
  </widget>
  <customwidgets>
   <customwidget>
+<<<<<<< HEAD
    <class>QRImageWidget</class>
    <extends>QLabel</extends>
    <header>receiverequestdialog.h</header>
   </customwidget>
   <customwidget>
+=======
+>>>>>>> 7ce6c44fbf7c4f487300a2a416e66a677d517cb8
    <class>VerticalLabel</class>
    <extends>QLabel</extends>
    <header>verticallabel.h</header>

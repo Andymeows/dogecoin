@@ -291,7 +291,11 @@ BITCOIN_QT_CPP = \
   rpcconsole.cpp \
   splashscreen.cpp \
   trafficgraphwidget.cpp \
+<<<<<<< HEAD
   utilitydialog.cpp
+=======
+  utilitydialog.cpp \
+>>>>>>> 7ce6c44fbf7c4f487300a2a416e66a677d517cb8
   verticallabel.cpp \
   winshutdownmonitor.cpp
 
