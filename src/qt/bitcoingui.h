@@ -84,6 +84,7 @@ private:
     QAction *signMessageAction;
     QAction *verifyMessageAction;
     QAction *paperWalletAction;
+    QAction *scanPaperWalletAction;
     QAction *aboutAction;
     QAction *receiveCoinsAction;
     QAction *optionsAction;

@@ -183,6 +183,13 @@ void WalletFrame::printPaperWallets()
         walletView->printPaperWallets();
 }
 
+void WalletFrame::scanPaperWallets()
+{
+    WalletView *walletView = currentWalletView();
+    if (walletView)
+        walletView->scanPaperWallets();
+}
+
 void WalletFrame::usedSendingAddresses()
 {
     WalletView *walletView = currentWalletView();

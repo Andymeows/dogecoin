@@ -99,6 +99,7 @@ QT_FORMS_UI = \
   forms/receivecoinsdialog.ui \
   forms/receiverequestdialog.ui \
   forms/rpcconsole.ui \
+  forms/scanpaperwalletdialog.ui \
   forms/sendcoinsdialog.ui \
   forms/sendcoinsentry.ui \
   forms/signverifymessagedialog.ui \

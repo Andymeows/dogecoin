@@ -315,3 +315,13 @@ void WalletView::printPaperWallets()
     dlg.setModel(walletModel);
     dlg.exec();
 }
+
+void WalletView::scanPaperWallets()
+{
+    if(!walletModel)
+        return;
+
+    ScanPaperWalletDialog dlg(this);
+    dlg.setModel(walletModel);
+    dlg.exec();
+}

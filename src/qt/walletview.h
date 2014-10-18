@@ -93,6 +93,7 @@ public slots:
     void unlockWallet();
     /** Open the print paper wallets dialog **/
     void printPaperWallets();
+    void scanPaperWallets();
 
     /** Show used sending addresses */
     void usedSendingAddresses();

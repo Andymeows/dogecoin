@@ -6,6 +6,7 @@
 
 #include "ui_aboutdialog.h"
 #include "ui_paperwalletdialog.h"
+#include "ui_scanpaperwalletdialog.h"
 #include "ui_helpmessagedialog.h"
 
 #include "bitcoinunits.h"
@@ -47,6 +48,12 @@
 #include <QtPrintSupport/QPrintPreviewDialog>
 #endif
 #include <QPainter>
+#include <QMediaRecorder>
+#include <QCamera>
+#include <QCameraImageCapture>
+#include <QCameraViewfinder>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include "walletmodel.h"
 
 
@@ -406,6 +413,69 @@ void PaperWalletDialog::on_printButton_clicked()
     delete tx;
 #endif
     return;
+
+}
+
+ScanPaperWalletDialog::ScanPaperWalletDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::ScanPaperWalletDialog)
+{
+    ui->setupUi(this);
+
+    QByteArray cameraDevice;
+    foreach(const QByteArray &deviceName, QCamera::availableDevices()) {
+        cameraDevice = deviceName;
+    }    
+
+    this->camera = new QCamera(cameraDevice);
+
+    //QMediaRecorder* qmr = new QMediaRecorder(cam);
+    //QSize res = QSize(320,240);
+    //qmr->videoSettings().setResolution(res);
+
+    cam->setViewfinder(ui->video_feed);
+    cam->setCaptureMode(QCamera::CaptureStillImage);
+
+    connect(ui->takePicture, SIGNAL(clicked()), this, SLOT(on_take_picture()));
+    
+    cam->start();
+
+}
+
+void ScanPaperWalletDialog::setModel(WalletModel *model)
+{
+}
+
+ScanPaperWalletDialog::~ScanPaperWalletDialog()
+{
+    delete ui;
+}
+
+void ScanPaperWalletDialog::on_buttonBox_accepted()
+{
+    close();
+}
+
+void ScanPaperWalletDialog::on_take_picture()
+{
+
+    cout << "Taking a picture\n";
+    QCameraImageCapture* imageCapture = new QCameraImageCapture(this->camera);
+    this->camera->searchAndLock();
+    connect(imageCapture, SIGNAL(imageCaptured(int,QImage)), this, SLOT(processCapturedImage(int,QImage)));
+    imageCapture->capture();
+    this->camera->unlock();
+
+}
+
+void ScanPaperWalletDialog::processCapturedImage(int requestId, const QImage &img)
+{
+
+    QLabel* dest = ui->label_2;
+    QImage scaledImage = img.scaled(dest->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    dest->setPixmap(QPixmap::fromImage(scaledImage));
+    dest->raise();
 
 }
 

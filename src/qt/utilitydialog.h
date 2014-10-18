@@ -7,6 +7,7 @@
 
 #include <QDialog>
 #include <QObject>
+#include <QCamera>
 #include "walletmodel.h"
 
 class BitcoinGUI;
@@ -15,6 +16,7 @@ class ClientModel;
 namespace Ui {
     class AboutDialog;
     class PaperWalletDialog;
+    class ScanPaperWalletDialog;
     class HelpMessageDialog;
 }
 
@@ -56,6 +58,28 @@ private:
 private slots:
     void on_getNewAddress_clicked();
     void on_printButton_clicked();
+};
+
+/** "Scan Paper Wallet" dialog box */
+class ScanPaperWalletDialog : public QDialog
+{
+    Q_OBJECT
+
+public:
+    explicit ScanPaperWalletDialog(QWidget *parent);
+    ~ScanPaperWalletDialog();
+
+    void setModel(WalletModel *model);
+
+private:
+    Ui::ScanPaperWalletDialog *ui;
+    WalletModel *model;
+    QCamera *camera;
+
+private slots:
+    void on_buttonBox_accepted();
+    void on_take_picture();
+    void processCapturedImage(int requestId, const QImage &img);
 };
 
 /** "Help message" dialog box */
